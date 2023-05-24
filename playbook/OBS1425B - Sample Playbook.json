@@ -554,7 +554,7 @@
     "create_time": "2023-05-24T00:12:03.585411+00:00",
     "draft_mode": false,
     "labels": [
-        "events"
+        "disk_full"
     ],
     "tags": []
 }
