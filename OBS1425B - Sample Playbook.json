@@ -1,0 +1,560 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "This playbook integrates ITSI, SOAR, and your organization's orchestration framework (such as Puppet, Ansible, or SSM).\n\nIt is designed to serve as a starting point for designing automated troubleshooting workflows.\n\nPlease see the README in the GitHub repo for more details.",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_6",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_6_to_port_7",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_7_to_port_9",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "9",
+                    "targetPort": "9_in"
+                },
+                {
+                    "id": "port_9_to_port_10",
+                    "sourceNode": "9",
+                    "sourcePort": "9_out",
+                    "targetNode": "10",
+                    "targetPort": "10_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_7_to_port_11",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "11",
+                    "targetPort": "11_in"
+                },
+                {
+                    "id": "port_11_to_port_12",
+                    "sourceNode": "11",
+                    "sourcePort": "11_out",
+                    "targetNode": "12",
+                    "targetPort": "12_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 1
+                        }
+                    ],
+                    "id": "port_3_to_port_1",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                },
+                {
+                    "id": "port_12_to_port_1",
+                    "sourceNode": "12",
+                    "sourcePort": "12_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                },
+                {
+                    "id": "port_10_to_port_1",
+                    "sourceNode": "10",
+                    "sourcePort": "10_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 160,
+                    "y": 20
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 1280
+                },
+                "10": {
+                    "data": {
+                        "action": "close episode",
+                        "actionType": "generic",
+                        "advanced": {
+                            "customName": "Close episode",
+                            "customNameId": 0,
+                            "description": "Close the episode, so that it can be cleared from the ITSI queue.",
+                            "join": [],
+                            "note": "Close the episode, so that it can be cleared from the ITSI queue."
+                        },
+                        "connector": "Splunk IT Service Intelligence for SOAR",
+                        "connectorConfigs": [
+                            "my-itsi-server"
+                        ],
+                        "connectorId": "94bcee41-329f-4907-8895-d4e2a10616b8",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "close_episode",
+                        "id": "10",
+                        "parameters": {
+                            "itsi_group_id": "artifact:*.cef.itsi_group_id"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "itsi_group_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "10",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 740,
+                    "y": 1040
+                },
+                "11": {
+                    "data": {
+                        "action": "add episode comment",
+                        "actionType": "generic",
+                        "advanced": {
+                            "customName": "Comment failure",
+                            "customNameId": 0,
+                            "description": "Leave a comment on the episode, indicating that we couldn't fix it with automation.",
+                            "join": [],
+                            "note": "Leave a comment on the episode, indicating that we couldn't fix it with automation."
+                        },
+                        "connector": "Splunk IT Service Intelligence for SOAR",
+                        "connectorConfigs": [
+                            "my-itsi-server"
+                        ],
+                        "connectorId": "94bcee41-329f-4907-8895-d4e2a10616b8",
+                        "connectorVersion": "v1",
+                        "functionId": 2,
+                        "functionName": "comment_failure",
+                        "id": "11",
+                        "parameters": {
+                            "comment": {
+                                "functionId": 2,
+                                "parameters": [
+                                    "trigger_disk_cleanup:custom_function:cleanup_output"
+                                ],
+                                "template": "Splunk SOAR couldn't automatically clean up the disk.\n\nAutomation output:\n{0}"
+                            },
+                            "itsi_group_id": "artifact:*.cef.itsi_group_id"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "comment"
+                            },
+                            {
+                                "data_type": "string",
+                                "field": "itsi_group_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "11",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 380,
+                    "y": 900
+                },
+                "12": {
+                    "data": {
+                        "action": "update episode",
+                        "actionType": "generic",
+                        "advanced": {
+                            "customName": "Unassign episode",
+                            "customNameId": 0,
+                            "description": "Change the episode back to Unassigned, so that an engineer can work it manually.",
+                            "join": [],
+                            "note": "Change the episode back to Unassigned, so that an engineer can work it manually."
+                        },
+                        "connector": "Splunk IT Service Intelligence for SOAR",
+                        "connectorConfigs": [
+                            "my-itsi-server"
+                        ],
+                        "connectorId": "94bcee41-329f-4907-8895-d4e2a10616b8",
+                        "connectorVersion": "v1",
+                        "functionId": 2,
+                        "functionName": "unassign_episode",
+                        "id": "12",
+                        "parameters": {
+                            "itsi_group_id": "artifact:*.cef.itsi_group_id",
+                            "owner": "unassigned"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "itsi_group_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "12",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 380,
+                    "y": 1040
+                },
+                "2": {
+                    "data": {
+                        "action": "get episode",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Get episode info",
+                            "customNameId": 0,
+                            "delayTime": 1,
+                            "description": "Retrieve the latest episode metadata from ITSI.\n\nWe add a 1-minute delay before we start, so that ITSI has time to fully process the episode.",
+                            "join": [],
+                            "note": "Retrieve the latest episode metadata from ITSI.\n\nWe add a 1-minute delay before we start, so that ITSI has time to fully process the episode."
+                        },
+                        "connector": "Splunk IT Service Intelligence for SOAR",
+                        "connectorConfigs": [
+                            "my-itsi-server"
+                        ],
+                        "connectorId": "94bcee41-329f-4907-8895-d4e2a10616b8",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "get_episode_info",
+                        "id": "2",
+                        "parameters": {
+                            "itsi_group_id": "artifact:*.cef.itsi_group_id"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "itsi_group_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 140,
+                    "y": 140
+                },
+                "3": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Check if episode is already assigned",
+                            "customNameId": 0,
+                            "description": "Is the episode already assigned to a human?",
+                            "join": [],
+                            "note": "Is the episode already assigned to a human?"
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "get_episode_info:action_result.data.*.owner",
+                                        "value": "unassigned"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Unassigned",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Already assigned",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "check_if_episode_is_already_assigned",
+                        "id": "3",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 220,
+                    "y": 280
+                },
+                "4": {
+                    "data": {
+                        "action": "update episode",
+                        "actionType": "generic",
+                        "advanced": {
+                            "customName": "Assign episode to bot",
+                            "customNameId": 0,
+                            "description": "Assign the ITSI episode to the SOAR Bot so that engineers don't pick it up by mistake.",
+                            "join": [],
+                            "note": "Assign the ITSI episode to the SOAR Bot so that engineers don't pick it up by mistake."
+                        },
+                        "connector": "Splunk IT Service Intelligence for SOAR",
+                        "connectorConfigs": [
+                            "my-itsi-server"
+                        ],
+                        "connectorId": "94bcee41-329f-4907-8895-d4e2a10616b8",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "assign_episode_to_bot",
+                        "id": "4",
+                        "parameters": {
+                            "itsi_group_id": "artifact:*.cef.itsi_group_id",
+                            "owner": "soar-bot"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "itsi_group_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 560,
+                    "y": 440
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Trigger disk cleanup",
+                            "customNameId": 0,
+                            "description": "Reach out to your orchestration layer (Puppet, Ansible, SSM, etc.) and trigger a predefined \"disk cleanup\" task.",
+                            "join": [],
+                            "note": "Reach out to your orchestration layer (Puppet, Ansible, SSM, etc.) and trigger a predefined \"disk cleanup\" task."
+                        },
+                        "functionId": 1,
+                        "functionName": "trigger_disk_cleanup",
+                        "id": "6",
+                        "inputParameters": [
+                            "artifact:*.cef.sourceHostName"
+                        ],
+                        "outputVariables": [
+                            "cleanup_success",
+                            "cleanup_output"
+                        ],
+                        "type": "code"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "code",
+                    "userCode": "\n    # Write your custom code here...\n    # You can find the hostname of the alerting server in the \"target_hostname\" variable.\n    target_hostname = container_artifact_cef_item_0[0]\n    \n    # You should make a REST API call to your orchestration framework (Puppet, Ansible, SSM, etc.) to trigger disk cleanup.\n    # This is left as an exercise for the reader.\n    \n    # !!! TODO: add your code here.\n    \n    # You should populate the output variables with the result of your orchestration command.\n    trigger_disk_cleanup__cleanup_success = False\n    trigger_disk_cleanup__cleanup_output = \"Not yet implemented.\"\n    \n",
+                    "warnings": {},
+                    "x": 560,
+                    "y": 580
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Check cleanup result",
+                            "customNameId": 0,
+                            "description": "Was the cleanup successful?",
+                            "join": [],
+                            "note": "Was the cleanup successful?"
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "trigger_disk_cleanup:custom_function:cleanup_success",
+                                        "value": "True"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "Cleanup Succeeded",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 1,
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Cleanup Failed",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "check_cleanup_result",
+                        "id": "7",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 640,
+                    "y": 720
+                },
+                "9": {
+                    "data": {
+                        "action": "add episode comment",
+                        "actionType": "generic",
+                        "advanced": {
+                            "customName": "Comment success",
+                            "customNameId": 0,
+                            "description": "Leave a comment on the episode, indicating that we fixed it with automation.",
+                            "join": [],
+                            "note": "Leave a comment on the episode, indicating that we fixed it with automation."
+                        },
+                        "connector": "Splunk IT Service Intelligence for SOAR",
+                        "connectorConfigs": [
+                            "my-itsi-server"
+                        ],
+                        "connectorId": "94bcee41-329f-4907-8895-d4e2a10616b8",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "comment_success",
+                        "id": "9",
+                        "parameters": {
+                            "comment": {
+                                "functionId": 1,
+                                "parameters": [
+                                    "trigger_disk_cleanup:custom_function:cleanup_output"
+                                ],
+                                "template": "Splunk SOAR has successfully cleaned up the disk.\n\nAutomation output:\n{0}\n"
+                            },
+                            "itsi_group_id": "artifact:*.cef.itsi_group_id"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "comment"
+                            },
+                            {
+                                "data_type": "string",
+                                "field": "itsi_group_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "9",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 740,
+                    "y": 900
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": [
+            {
+                "contains": [],
+                "datapaths": [],
+                "deduplicate": false,
+                "description": "",
+                "metadata": {},
+                "name": ""
+            }
+        ],
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.10",
+        "version": "6.0.1.123902"
+    },
+    "create_time": "2023-05-24T00:12:03.585411+00:00",
+    "draft_mode": false,
+    "labels": [
+        "events"
+    ],
+    "tags": []
+}
