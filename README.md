@@ -6,7 +6,7 @@
 - Daniel Pierson <dpierson@splunk.com>
 
 ## .conf Talk Recording
-_TBA_
+https://conf.splunk.com/watch/conf-online.html?search=obs1425b#/
 
 ## Example Playbook
 ![Screenshot of Playbook](img/playbook-screenshot.png "Screenshot of Playbook")
